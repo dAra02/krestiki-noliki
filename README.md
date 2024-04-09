@@ -1,1 +1,1 @@
-Krestiki & Noliki
+Krestiki & Noliki (Redux)

@@ -1,1 +1,1 @@
-Krestiki & Noliki (Redux)
+Krestiki & Noliki (React-Redux)

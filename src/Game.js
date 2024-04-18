@@ -1,29 +1,23 @@
-import { useState } from 'react';
-import style from './app.module.css';
+import { useDispatch } from 'react-redux';
 import { Field, Info } from './GameLayout';
-import { store } from './store';
+import style from './app.module.css';
 
 export const App = () => {
-	const [storeState, setStoreState] = useState(store.getState());
-	const { field, currentPlayer, isGameEnded, isDraw } = storeState;
+	const dispatch = useDispatch();
 
 	const resettingTheGame = () => {
-		store.dispatch({ type: 'restartGame' });
-
-		store.subscribe(() => setStoreState(() => store.getState()));
+		dispatch({ type: 'restartGame' });
 	};
 
 	const handleClick = (i) => {
-		store.dispatch({ type: 'setPlayer', payload: i });
-
-		store.subscribe(() => setStoreState(() => store.getState()));
+		dispatch({ type: 'setPlayer', payload: i });
 	};
 
 	return (
 		<>
-			<Info isDraw={isDraw} isGameEnded={isGameEnded} currentPlayer={currentPlayer} />
+			<Info />
 			<div className={style.App}>
-				<Field fields={field} onSquareClick={handleClick} />
+				<Field onSquareClick={handleClick} />
 				<button className={style.button} onClick={resettingTheGame}>
 					Начать заново
 				</button>

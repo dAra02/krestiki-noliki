@@ -1,1 +1,1 @@
-Krestiki & Noliki (Redux)
+Krestiki & Noliki (Redux)(Class Components)

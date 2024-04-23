@@ -1,18 +1,28 @@
-import { useSelector } from 'react-redux';
-import { selectorField } from '../../selectors';
-import style from './FieldLayout.module.css';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-export const Field = ({ onSquareClick }) => {
-	const field = useSelector(selectorField);
-	return (
-		<>
-			{field.map((field, index) => {
-				return (
-					<button key={index} className={style.kletka} onClick={() => onSquareClick(index)}>
-						{field}
-					</button>
-				);
-			})}
-		</>
-	);
-};
+class FieldContainer extends Component {
+	render() {
+		return (
+			<>
+				{this.props.field.map((field, index) => {
+					return (
+						<button
+							key={index}
+							className="field-wh border border-gray-600 border-solid cursor-pointer text-6xl"
+							onClick={() => this.props.onSquareClick(index)}
+						>
+							{field}
+						</button>
+					);
+				})}
+			</>
+		);
+	}
+}
+
+const mapStateToProps = (state) => ({
+	field: state.field,
+});
+
+export const Field = connect(mapStateToProps)(FieldContainer);
